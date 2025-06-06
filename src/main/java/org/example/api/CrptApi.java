@@ -62,8 +62,9 @@ public class CrptApi {
             return processResponse(response.body());
 
         } catch (Exception e) {
-            rateLimiter.release();
             return ApiResponse.error(e.getMessage());
+        } finally {
+            rateLimiter.release();
         }
     }
 
